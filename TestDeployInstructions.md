@@ -2,7 +2,8 @@ create github personal access token from settings>developer>personal access toke
 create npm personal access token from profile icon>access tokens
 
 brew install travis
-travis encrypt MY_ENV_VAR=mysecretvalue --add env.global # put a space at the front so it's not saved in shell autocomplete
+travis login --pro
+travis encrypt MY_ENV_VAR=mysecretvalue --add env.global --pro # put a space at the front so it's not saved in shell autocomplete
 
 set up local emulated s3 bucket to test:
 docker run -d -p 9444:9000 scireum/s3-ninja:6
