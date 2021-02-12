@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Initialization
-if [[ "$UPDATE_TYPE" == "major" || "$UPDATE_TYPE" == "minor" || "$UPDATE_TYPE" == "patch"]]; then
+if [[ "$UPDATE_TYPE" == "major" || "$UPDATE_TYPE" == "minor" || "$UPDATE_TYPE" == "patch" ]]; then
     if [[ -z "$AWS_ACCESS_KEY_ID" || -z "$AWS_SECRET_ACCESS_KEY" ]]; then
         echo "Missing AWS credentials. No deployments will be made."
         exit 1
