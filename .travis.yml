@@ -1,46 +1,39 @@
 language: node_js
-
-# BEGIN config for keytar from https://github.com/atom/node-keytar/blob/3b7c00b37e58258ae15b43d78c48cf4d05e9a751/.travis.yml
-
 addons:
   apt:
     packages:
-      - xvfb
-      - gnome-keyring
-      - libsecret-1-dev
-      - xorg
-      - dbus
-      - dbus-x11
+    - xvfb
+    - gnome-keyring
+    - libsecret-1-dev
+    - xorg
+    - dbus
+    - dbus-x11
 env:
+  matrix:
   - CC=clang CXX=clang++ npm_config_clang=1
-# END config for keytar
-
+  global:
+  - secure: iS614rLDwYUHU/Bps938zwnyWGigZ8YD/fYe9GBh8YxcMG+SUQCMsXblSEKEgWTv0H5KVyCGg1DdU3J4uBTFf7o0C4XSjnGoVonjk6hpdWWrNMlPeUNm9ejYEDmxN1hLzuR3q9poN3Bz4oU0pxr9YizbkqawPWJGa2zqen3+0CtbkI3ec/SKNS+0j/0pZ4mTGdZtTd3KJVa5nRboVA556m6vWe2iBgRrPwOTtnsgc7qOEDnecsvj6qfqy6NP82ANvcv/dVOV+HB1+A04pKkQk74FRVZA90zee1gaeq6OFvI7GcqIPNhyv3dljAAn1wMd3U1LL8B4yjE4opxwPda8l/HoR7YVqXdWo666ss3WHDSo/vL5ZWeY6ozLynIbShVZI4t+BjHFycPzJ157EUNrj48ReP+RNrhpmpD4pkHm6dZzZbyy+Wzoiwz93xATR8H5zq5OEXaHhMFUGu+qGQADstyUT0vdvxIfbwbeB83QfsC2vC6FAsw0hMUhG4lkXNMi7kYfyY/WagQpxd7YKIpT5AD5KIBuIL8zPpEqNi+JsdK9HrmuIaqFmwHTfAEtMUU7rkRhAaEhSIP/8c4eUVXCaXnYuFqBy5e1XoquY7XBqAaVSBcGO66Nh76H5SqgioyQw0qrtMLhtVv+2hKvQow11hcHdPopHec29TzYJqUM5Ss=
+  - secure: JV9cW5cZeK9tadMDA8dvCGjDroWrYJYVY8ETGfRh/tQYZfeEJh3WD5pQa4WhcGMSsW+nZogjDc5rGkrruhjvVsnnii15PQ2ipcalZLesctSQhsS8oo84vkgs6fd4L4TwNZcdUpU1FHpKs8R/cwKyXltXMQ2q/Z8mpGyr3wUhqbanKEs4R/BOP4V85zNZtjGXTcUoTVFspkx7FgT+kUi4J+CF+G7OyndcOgivz+DkPILN9bEqyiU1vk9iCIIY/y1LlD7MbLz3P3syl77E61lddsXzO5ZZD6Uu/eqvyhEL0qHf2HvO2ZGNV1omAa82tUF4G6uX+KpCFlRYF4sZV4mh9yVQtpPVnE7twqG1JJDuDt8D0iSGy3f/ORjlUNBvo1QxJ0LICqnizPRkbh/ADztG2Vpd/ow9t1x3ihqYEzk7PY65BQXiPuelhCrNSVAiSqXPrH+E2jmFozgmtXPG62HqvcbvSWF3FayUh8Zf1vc07YPFILZZ5u60MQRUyeajpoDbzXW71lMMbkUSdPDmnlqzrDcqmNtoH2oKoRv1ZmWhhFiakcGsJWsxTV1upGihbEJt6Xnq52r8NPGp3Tm4t9xox+RqK/XLDe14A8BQLZ+2XnVaJhGz4OfpsbhWEO8aY1nPcO0+Kw56Afjpa93nLcT39IE59UyAhVHwnGvm+vr4YNM=
 os:
-  - osx
-  # Windows tests are disabled unil logon session error can be resolved
-  #- windows
-  - linux
-
+- osx
+- linux
 node_js:
-  - 12
-  - 14
-  - node
-
+- 12
+- 14
+- node
 branches:
   only:
-    - main
-
+  - main
 before_install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then mkdir -p ~/.local/share/keyrings; export $(dbus-launch); echo "" | gnome-keyring-daemon --unlock; /usr/bin/gnome-keyring-daemon --components=secrets,pkcs11,ssh --start --daemonize; export $(echo "" | /usr/bin/gnome-keyring-daemon -r -d --unlock); fi
-
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then mkdir -p ~/.local/share/keyrings; export
+  $(dbus-launch); echo "" | gnome-keyring-daemon --unlock; /usr/bin/gnome-keyring-daemon
+  --components=secrets,pkcs11,ssh --start --daemonize; export $(echo "" | /usr/bin/gnome-keyring-daemon
+  -r -d --unlock); fi
 jobs:
-  exclude: # for efficiency, just run Linux and Node.js 12 for pull requests
-    # Windows tests are disabled unil logon session error can be resolved
-    #- if: type = pull_request
-    #  os: windows
-    - if: type = pull_request
-      os: osx
-    - if: type = pull_request
-      node_js: node
-    - if: type = pull_request
-      node_js: 14
+  exclude:
+  - if: type = pull_request
+    os: osx
+  - if: type = pull_request
+    node_js: node
+  - if: type = pull_request
+    node_js: 14
