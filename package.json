@@ -1,12 +1,11 @@
 {
-  "name": "freeclimb-cli",
+  "name": "freeclimb-cli-cd-test",
   "version": "0.1.2",
-  "author": "dev@freeclimb.com",
   "bin": {
     "freeclimb": "./bin/run"
   },
   "bugs": {
-    "url": "https://github.com/FreeClimbAPI/freeclimb-cli/issues"
+    "url": "https://github.com/jblack-vail/freeclimb-cli-cd-test/issues"
   },
   "dependencies": {
     "@oclif/command": "^1.8",
@@ -55,7 +54,7 @@
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
   ],
-  "homepage": "https://github.com/FreeClimbAPI/freeclimb-cli",
+  "homepage": "https://github.com/jblack-vail/freeclimb-cli-cd-test/",
   "keywords": [
     "oclif"
   ],
@@ -66,7 +65,12 @@
     "bin": "freeclimb",
     "helpClass": "./lib/help",
     "macos": {
-      "identifier": "freeclimb-cli"
+      "identifier": "freeclimb-cli-cd-test"
+    },
+    "update": {
+      "s3": {
+        "bucket": "oclif-test"
+      }
     },
     "plugins": [
       "@oclif/plugin-help"
@@ -115,7 +119,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FreeClimbAPI/freeclimb-cli.git"
+    "url": "git+https://github.com/jblack-vail/freeclimb-cli-cd-test.git"
   },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
@@ -140,7 +144,7 @@
       "eslint --quiet"
     ]
   },
-  "description": "freeclimb-cli =============",
+  "description": "freeclimb-cli-cd-test =============",
   "directories": {
     "test": "test"
   }
