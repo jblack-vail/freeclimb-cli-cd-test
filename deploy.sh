@@ -29,3 +29,21 @@ npm publish
 
 # Push tarball to AWS (for Homebrew)
 yarn oclif-dev pack
+yarn oclif-dev publish
+
+# Git commit (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
+config() {
+  git config --global user.email "travis@travis-ci.org"
+  git config --global user.name "Travis CI"
+  git remote add origin-pages https://${GITHUB_AUTH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
+}
+commit() {
+  git add .
+  git commit --message "Deployed by Travis CI. Build number: $TRAVIS_BUILD_NUMBER"
+}
+push() {
+  git push
+}
+config
+commit
+push
