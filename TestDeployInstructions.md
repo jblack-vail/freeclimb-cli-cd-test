@@ -1,5 +1,6 @@
 create github personal access token from settings>developer>personal access token. It just needs public_repo access
 create npm personal access token from profile icon>access tokens
+Make sure to verify email address in npm otherwise there will be an error 403 on publish
 
 brew install travis
 travis login --pro
