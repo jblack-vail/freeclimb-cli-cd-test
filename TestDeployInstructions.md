@@ -17,6 +17,6 @@ Go to package.json and set oclif.update.s3.bucket to 'oclif-test'
 
 ./ngrok http 9444
 Copy the link location
-Go to .travis.yml and add to env.global: AWS_REGION = <link from ngrok>
+Go to .travis.yml and add to env.global: AWS_REGION = http://something.ngrok.io/s3, AWS_S3_ENDPOINT = http://something.ngrok.io/s3/
 
 For testing, just put in env.global: UPDATE_TYPE = "patch"

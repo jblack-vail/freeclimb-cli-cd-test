@@ -37,8 +37,8 @@ yarn oclif-dev publish
 
 # Git commit (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
 config() {
-  git config --global user.email "travis@travis-ci.org"
-  git config --global user.name "Travis CI"
+  git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
+  git config --global user.name "jblack-vail"
   git remote add origin-pages https://${GITHUB_AUTH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
 }
 commit() {
