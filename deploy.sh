@@ -21,9 +21,10 @@ else
     exit 4
 fi
 
-echo "Starting deployment"
+echo "Starting deployment..."
 
 # Push package to NPM
+yarn install --production=false
 echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
 echo "Logged in to npm as $(npm whoami)"
 npm version $UPDATE_TYPE
