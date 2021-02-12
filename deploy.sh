@@ -41,6 +41,7 @@ config() {
   git remote add origin-pages https://${GITHUB_AUTH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
 }
 commit() {
+  git checkout main
   git add .
   git commit --message "Deployed by Travis CI. Build number: $TRAVIS_BUILD_NUMBER"
 }
