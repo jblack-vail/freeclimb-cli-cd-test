@@ -1,6 +1,6 @@
 {
   "name": "freeclimb-cli-cd-test",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "bin": {
     "freeclimb": "./bin/run"
   },
