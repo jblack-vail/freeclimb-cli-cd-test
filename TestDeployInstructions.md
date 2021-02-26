@@ -12,7 +12,7 @@ Go to localhost:9444/ui
 Create a bucket called oclif-test
 Click make public
 Copy access key and secret key
-use travis encrypt to add them
+use travis encrypt to add them as AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 Go to package.json and set oclif.update.s3.bucket to 'oclif-test'
 
 ./ngrok http 9444
