@@ -23,7 +23,7 @@ if [[ -z "$NPM_AUTH_TOKEN" ]]; then
 fi
 
 # Get tag information
-PREVIOUS_GIT_TAG=${$(git describe --tags --abbrev=0)#v} # removes the 'v' at the beginning of the tag, e.g. v1.2.3 -> 1.2.3
+PREVIOUS_GIT_TAG=$(git describe --tags --abbrev=0 | sed -e 's/v//') # removes the 'v' at the beginning of the tag, e.g. v1.2.3 -> 1.2.3
 VERSION_IN_CHANGELOG=$(node get-version.js)
 
 node compare-versions.js $PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
