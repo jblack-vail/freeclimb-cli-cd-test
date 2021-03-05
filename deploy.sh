@@ -9,8 +9,6 @@ if [[ -z "$GITHUB_REPOSITORY_SLUG" ]]; then
     echo "Missing GitHub repository slug, e.g. octocat/hello-world. No deployments will be made."
     exit 2
 fi
-echo "$AWS_ACCESS_KEY_ID"
-echo "$AWS_SECRET_ACCESS_KEY"
 if [[ -z "$AWS_ACCESS_KEY_ID" || -z "$AWS_SECRET_ACCESS_KEY" ]]; then
     echo "Missing AWS credentials. No deployments will be made."
     exit 3
