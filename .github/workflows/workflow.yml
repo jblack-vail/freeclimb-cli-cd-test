@@ -30,7 +30,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: test.sh
+    - run: bash test.sh
   test-all:
     if: github.event_name == 'push'
     runs-on: ${{ matrix.os }}
@@ -46,7 +46,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: test.sh
+    - run: bash test.sh
   deploy:
     needs: test-all
     if: github.event_name == 'push'
@@ -63,9 +63,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: deploy.sh
+    - run: bash deploy.sh
     
     env:
       GITHUB_REPOSITORY_SLUG: ${{ github.repository }}
       AWS_REGION: us-east-2
-      
