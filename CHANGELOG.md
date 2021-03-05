@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.6"></a>
+
+## [0.1.6] - 2021-03-03
+
+Test to check the automated tag update
+
 <a name="0.1.0"></a>
 
 ## [0.1.0] - 2020-11-18
