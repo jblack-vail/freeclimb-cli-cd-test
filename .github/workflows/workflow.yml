@@ -67,3 +67,5 @@ jobs:
     
     env:
       GITHUB_REPOSITORY_SLUG: ${{ github.repository }}
+      AWS_REGION: us-east-2
+      

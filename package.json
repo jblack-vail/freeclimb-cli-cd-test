@@ -70,7 +70,7 @@
     },
     "update": {
       "s3": {
-        "bucket": "oclif-test"
+        "bucket": "vail-freeclimb-cli-testing"
       }
     },
     "plugins": [
