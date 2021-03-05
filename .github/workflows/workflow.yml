@@ -39,6 +39,9 @@ jobs:
       matrix:
         node-version: [ 12.x, 14.x, 15.x ]
         os: [ macos-latest, ubuntu-latest, windows-latest ]
+        exclude:
+          - os: windows-latest
+            node: 15.x # for some reason yarn install does not work with this specific version
 
     steps:
     - uses: actions/checkout@v2
