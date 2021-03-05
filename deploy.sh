@@ -30,7 +30,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # Push package to NPM
-yarn install --production=false
+yarn install --frozen-lockfile --production=false
 npm set registry "http://registry.npmjs.org"
 npm set //registry.npmjs.org/:_authToken $NPM_AUTH_TOKEN
 echo "Logged in to npm as $(npm whoami)"
