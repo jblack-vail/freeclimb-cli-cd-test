@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo apt-get install -y xvfb gnome-keyring libsecret-1-dev xorg dbus dbus-x11
+
 export $(dbus-launch)
 echo "" | gnome-keyring-daemon --unlock
 /usr/bin/gnome-keyring-daemon --components=secrets,pkcs11,ssh --start --daemonize
