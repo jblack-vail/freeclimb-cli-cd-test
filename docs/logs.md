@@ -23,7 +23,7 @@ OPTIONS
   -n, --next             Displays the next page of output.
 ```
 
-_See code: [src/commands/logs/filter.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.6/src/commands/logs/filter.ts)_
+_See code: [src/commands/logs/filter.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.7/src/commands/logs/filter.ts)_
 
 ## `freeclimb logs:list`
 
@@ -39,4 +39,4 @@ OPTIONS
   -n, --next             Displays the next page of output.
 ```
 
-_See code: [src/commands/logs/list.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.6/src/commands/logs/list.ts)_
+_See code: [src/commands/logs/list.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.7/src/commands/logs/list.ts)_
