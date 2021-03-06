@@ -36,6 +36,14 @@ fi
 # Begin deployment
 echo "Starting deployment..."
 
+# Git configuration (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
+config() {
+  git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
+  git config --global user.name "jblack-vail"
+  git remote add origin-cli https://${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY_SLUG}.git > /dev/null 2>&1
+}
+config
+
 # Push package to NPM
 yarn install --frozen-lockfile --production=false
 npm set registry "http://registry.npmjs.org"
@@ -50,20 +58,7 @@ yarn oclif-dev publish
 
 # TODO commands to update version number and SHA in external homebrew repository
 
-# Git commit (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
-config() {
-  git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
-  git config --global user.name "jblack-vail"
-  git remote add origin-cli https://${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY_SLUG}.git > /dev/null 2>&1
-}
-commit() {
-  git checkout main
-  git add .
-  git commit --message "Deployed by GitHub Actions. Updated to $VERSION_IN_CHANGELOG"
-}
 push() {
-  git push --quiet --set-upstream origin-cli main
+  git push --quiet --set-upstream origin main
 }
-config
-commit
 push
