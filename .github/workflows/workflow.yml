@@ -44,6 +44,8 @@ jobs:
         exclude:
           - os: windows-latest
             node-version: 15.x # for some reason yarn install does not work with this specific version
+          - os: macos-latest
+            node-version: 15.x # there was a (temporary?) error with a socket connection in this version
 
     steps:
     - uses: actions/checkout@v2
