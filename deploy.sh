@@ -23,10 +23,10 @@ if [[ -z "$NPM_AUTH_TOKEN" ]]; then
 fi
 
 # Get tag information
-PREVIOUS_GIT_TAG=$(git describe --tags --abbrev=0 | sed -e 's/v//') # removes the 'v' at the beginning of the tag, e.g. v1.2.3 -> 1.2.3
+# PREVIOUS_GIT_TAG=$(git describe --tags --abbrev=0 | sed -e 's/v//') # github is not cooperating with my git command. so read from package.json
 VERSION_IN_CHANGELOG=$(node get-version.js)
 
-node compare-versions.js $PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
+node compare-versions.js $VERSION_IN_CHANGELOG #$PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
 
 if [[ $? -ne 0 ]]; then
     echo "Version numbers were not valid. No deployments will be made."
@@ -59,7 +59,7 @@ config() {
 commit() {
   git checkout main
   git add .
-  git commit --message "Deployed by GitHub Actions. Updated from $PREVIOUS_GIT_TAG to $VERSION_IN_CHANGELOG"
+  git commit --message "Deployed by GitHub Actions. Updated to $VERSION_IN_CHANGELOG"
 }
 push() {
   git push --quiet --set-upstream origin-cli main
