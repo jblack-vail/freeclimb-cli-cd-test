@@ -9,7 +9,7 @@ describe("Test for login command", function () {
     test.stub(cli, "confirm", () => async () => false)
         .stdout()
         .command(["login"])
-        .exit(2)
+        .exit(200000)
         .it("Test exit code 2 is produced when user responds N")
 
     test.nock("https://www.freeclimb.com", async (api) =>
