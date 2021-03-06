@@ -26,6 +26,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # specifies that all commits should be pulled
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
