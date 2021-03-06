@@ -3,6 +3,7 @@ import * as dotenv from "dotenv"
 import cli from "cli-ux"
 
 dotenv.config()
+console.log("i changed something")
 
 describe("Test for login command", function () {
     test.stub(cli, "confirm", () => async () => false)
