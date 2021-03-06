@@ -91,7 +91,7 @@ export class LoginCancelled extends FreeClimbError {
                 "https://docs.freeclimb.com/reference/error-and-warning-dictionary",
                 "Re-run the login command and agree to credential reset."
             ),
-            2
+            200000
         )
     }
 }
