@@ -1,6 +1,6 @@
 const fs = require("fs")
 const argumentCount = process.argv.length
-if (argumentCount != 4 || argumentCount != 3) {
+if (argumentCount != 4 && argumentCount != 3) {
     console.log("Wrong number of arguments!")
     process.exit(1)
 }
@@ -9,12 +9,12 @@ const versionRegex = /^(\d+\.){2}\d+$/
 
 const oldVer =
     argumentCount == 4
-        ? process.argv[3]
+        ? process.argv[2]
         : JSON.parse(fs.readFileSync("package.json", "utf-8")).version
-const newVer = argumentCount == 4 ? process.argv[4] : process.argv[3]
-const logVersionNumbers = () => console.log(`Old version: ${old}, New version: ${newVer}`)
+const newVer = argumentCount == 4 ? process.argv[3] : process.argv[2]
+const logVersionNumbers = () => console.log(`Old version: ${oldVer}, New version: ${newVer}`)
 
-if (!(versionRegex.test(old) && versionRegex.test(newVer))) {
+if (!(versionRegex.test(oldVer) && versionRegex.test(newVer))) {
     console.log("One of the version numbers has an invalid format.")
     logVersionNumbers()
     process.exit(2)
