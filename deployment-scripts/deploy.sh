@@ -24,9 +24,9 @@ fi
 
 # Get tag information
 # PREVIOUS_GIT_TAG=$(git describe --tags --abbrev=0 | sed -e 's/v//') # github is not cooperating with my git command. so read from package.json
-VERSION_IN_CHANGELOG=$(node get-version.js)
+VERSION_IN_CHANGELOG=$(node deployment-scripts/get-version.js)
 
-node compare-versions.js $VERSION_IN_CHANGELOG #$PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
+node deployment-scripts/compare-versions.js $VERSION_IN_CHANGELOG #$PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
 
 if [[ $? -ne 0 ]]; then
     echo "Version numbers were not valid. No deployments will be made."
@@ -55,8 +55,6 @@ npm publish
 # Push tarball to AWS (for Homebrew)
 yarn oclif-dev pack
 yarn oclif-dev publish
-
-# TODO commands to update version number and SHA in external homebrew repository
 
 push() {
   git push --quiet --set-upstream origin main
