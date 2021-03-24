@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.10"></a>
+
+## [0.1.10] - 2021-03-24
+
+Test homebrew deploy
+
 <a name="0.1.9"></a>
 
 ## [0.1.9] - 2021-03-10
