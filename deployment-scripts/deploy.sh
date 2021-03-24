@@ -13,8 +13,12 @@ if [[ -z "$AWS_ACCESS_KEY_ID" || -z "$AWS_SECRET_ACCESS_KEY" ]]; then
     echo "Missing AWS credentials. No deployments will be made."
     exit 3
 fi
-if [[ -z "$PERSONAL_ACCESS_TOKEN" ]]; then
-    echo "Missing GitHub credentials. No deployments will be made."
+if [[ -z "$CLI_REPO_TOKEN" ]]; then
+    echo "Missing GitHub credentials for the CLI repository. No deployments will be made."
+    exit 4
+fi
+if [[ -z "HOMEBREW_REPO_TOKEN" ]]; then
+    echo "Missing GitHub credentials for the Homebrew repository. No deployments will be made."
     exit 4
 fi
 if [[ -z "$NPM_AUTH_TOKEN" ]]; then
@@ -40,7 +44,7 @@ echo "Starting deployment..."
 config() {
   git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
   git config --global user.name "jblack-vail"
-  git remote add origin-cli https://${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY_SLUG}.git > /dev/null 2>&1
+  git remote add origin-cli https://${CLI_REPO_TOKEN}@github.com/${GITHUB_REPOSITORY_SLUG}.git > /dev/null 2>&1
 }
 config
 
@@ -59,4 +63,15 @@ yarn oclif-dev publish
 push() {
   git push --quiet --set-upstream origin main
 }
+push
+
+# Update Homebrew deployment
+NEW_SHA=$(shasum -a 256 "dist/freeclimb-v${VERSION_IN_CHANGELOG}.tar.gz")
+mkdir homebrew-repo
+git clone https://${HOMEBREW_REPO_TOKEN}@github.com/${HOMEBREW_REPOSITORY_SLUG}.git homebrew-repo
+cd homebrew-repo
+sed -E -i "s/  sha256 \"[a-f0-9]+\"/  sha256 \"$NEW_SHA\"/g" Formula/freeclimb.rb
+sed -E -i "s/  url \".+\"/  url \"https://vail-freeclimb-cli-testing.s3.us-east-2.amazonaws.com/freeclimb-v${VERSION_IN_CHANGELOG}/freeclimb-v${VERSION_IN_CHANGELOG}.tar.gz\"/g" Formula/freeclimb.rb
+git add .
+git commit -m "Update package to version $VERSION_IN_CHANGELOG"
 push

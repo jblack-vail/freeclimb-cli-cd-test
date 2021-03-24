@@ -73,8 +73,10 @@ jobs:
     - run: bash deployment-scripts/deploy.sh
       env:
         GITHUB_REPOSITORY_SLUG: ${{ github.repository }}
+        HOMEBREW_REPOSITORY_SLUG: jblack-vail/homebrew-brew
         AWS_REGION: us-east-2
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} 
-        PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} 
+        CLI_REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        HOMEBREW_REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # might be the same for CLI and Homebrew, but not necessarily
