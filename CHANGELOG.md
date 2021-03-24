@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.11"></a>
+
+## [0.1.11] - 2021-03-24
+
+Add homebrew access token
+
 <a name="0.1.10"></a>
 
 ## [0.1.10] - 2021-03-24
