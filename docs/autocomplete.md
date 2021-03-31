@@ -26,4 +26,4 @@ EXAMPLES
   $ freeclimb autocomplete --refresh-cache
 ```
 
-_See code: [src/commands/autocomplete/index.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.11/src/commands/autocomplete/index.ts)_
+_See code: [src/commands/autocomplete/index.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.13/src/commands/autocomplete/index.ts)_

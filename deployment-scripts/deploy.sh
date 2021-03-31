@@ -37,13 +37,6 @@ fi
 # Begin deployment
 echo "Starting deployment..."
 
-# Git configuration (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
-config() {
-  git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
-  git config --global user.name "jblack-vail"
-}
-config
-
 # Push package to NPM
 yarn install --frozen-lockfile --production=false
 npm set registry "http://registry.npmjs.org"
@@ -67,7 +60,8 @@ mkdir homebrew-repo
 git clone https://${HOMEBREW_REPO_TOKEN}@github.com/${HOMEBREW_REPOSITORY_SLUG}.git homebrew-repo
 cd homebrew-repo
 sed -E -i "s/  sha256 \"[a-f0-9]*\"/  sha256 \"$NEW_SHA\"/g" Formula/freeclimb.rb
-sed -E -i "s/$EXISTING_VERSION/$TARGET_VERSION/g" Formula/freeclimb.rb
+EXISTING_VERSION_PATTERN=$(echo $EXISTING_VERSION | sed "s/\./\\\./g") # prevents subtle change to shasum if it contained substr. of version number
+sed -E -i "s/$EXISTING_VERSION_PATTERN/$TARGET_VERSION/g" Formula/freeclimb.rb
 git add .
 git commit -m "Update to version $TARGET_VERSION"
 push

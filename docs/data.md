@@ -17,4 +17,4 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/data.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.11/src/commands/data.ts)_
+_See code: [src/commands/data.ts](https://github.com/jblack-vail/freeclimb-cli-cd-test/blob/v0.1.13/src/commands/data.ts)_

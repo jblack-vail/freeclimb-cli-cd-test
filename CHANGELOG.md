@@ -9,6 +9,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.15"></a>
+
+## [0.1.15] - 2021-03-31
+
+Fix shasum change bug
+Remove hardcoded git username and email
+
 <a name="0.1.14"></a>
 
 ## [0.1.14] - 2021-03-31
