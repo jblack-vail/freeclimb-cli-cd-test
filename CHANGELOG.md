@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.16"></a>
+
+## [0.1.16] - 2021-03-31
+
+Add GitHub actions bot credentials
+
 <a name="0.1.15"></a>
 
 ## [0.1.15] - 2021-03-31

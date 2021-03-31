@@ -37,6 +37,13 @@ fi
 # Begin deployment
 echo "Starting deployment..."
 
+# Git configuration (adapted from https://gist.github.com/willprice/e07efd73fb7f13f917ea)
+config() {
+  git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com" # official github-actions email. see https://github.community/t/github-actions-bot-email-address/17204/6
+  git config --global user.name "github-actions"
+}
+config
+
 # Push package to NPM
 yarn install --frozen-lockfile --production=false
 npm set registry "http://registry.npmjs.org"
