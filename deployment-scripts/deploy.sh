@@ -24,9 +24,10 @@ fi
 
 # Get tag information
 # PREVIOUS_GIT_TAG=$(git describe --tags --abbrev=0 | sed -e 's/v//') # github is not cooperating with my git command. so read from package.json
-VERSION_IN_CHANGELOG=$(node deployment-scripts/get-version.js)
+EXISTING_VERSION=$(node deployment-scripts/get-existing-version.js)
+TARGET_VERSION=$(node deployment-scripts/get-target-version.js)
 
-node deployment-scripts/compare-versions.js $VERSION_IN_CHANGELOG #$PREVIOUS_GIT_TAG $VERSION_IN_CHANGELOG
+node deployment-scripts/compare-versions.js $EXISTING_VERSION $TARGET_VERSION
 
 if [[ $? -ne 0 ]]; then
     echo "Version numbers were not valid. No deployments will be made."
@@ -48,7 +49,7 @@ yarn install --frozen-lockfile --production=false
 npm set registry "http://registry.npmjs.org"
 npm set //registry.npmjs.org/:_authToken $NPM_AUTH_TOKEN
 echo "Logged in to npm as $(npm whoami)"
-npm version $VERSION_IN_CHANGELOG
+npm version $TARGET_VERSION
 npm publish
 
 # Push tarball to AWS (for Homebrew)
@@ -61,12 +62,12 @@ push() {
 push
 
 # Update Homebrew deployment
-NEW_SHA=$(shasum -a 256 "dist/freeclimb-v${VERSION_IN_CHANGELOG}.tar.gz")
+NEW_SHA=$(shasum -a 256 "dist/freeclimb-v${TARGET_VERSION}/freeclimb-v${TARGET_VERSION}.tar.gz" | awk '{ print $1 }')
 mkdir homebrew-repo
 git clone https://${HOMEBREW_REPO_TOKEN}@github.com/${HOMEBREW_REPOSITORY_SLUG}.git homebrew-repo
 cd homebrew-repo
-sed -E -i "s/  sha256 \"[a-f0-9]+\"/  sha256 \"$NEW_SHA\"/g" Formula/freeclimb.rb
-sed -E -i "s/  url \".+\"/  url \"https://vail-freeclimb-cli-testing.s3.us-east-2.amazonaws.com/freeclimb-v${VERSION_IN_CHANGELOG}/freeclimb-v${VERSION_IN_CHANGELOG}.tar.gz\"/g" Formula/freeclimb.rb
+sed -E -i "s/  sha256 \"[a-f0-9]*\"/  sha256 \"$NEW_SHA\"/g" Formula/freeclimb.rb
+sed -E -i "s/$EXISTING_VERSION/$TARGET_VERSION/g" Formula/freeclimb.rb
 git add .
-git commit -m "Update package to version $VERSION_IN_CHANGELOG"
+git commit -m "Update to version $TARGET_VERSION"
 push

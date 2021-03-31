@@ -1,3 +1,4 @@
+// Produces the target version that the package should be upgraded to. This is read from the Changelog
 const fs = require("fs")
 
 const changelog = fs.readFileSync("CHANGELOG.md", "utf-8")
