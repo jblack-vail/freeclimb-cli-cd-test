@@ -13,11 +13,7 @@ if [[ -z "$AWS_ACCESS_KEY_ID" || -z "$AWS_SECRET_ACCESS_KEY" ]]; then
     echo "Missing AWS credentials. No deployments will be made."
     exit 3
 fi
-if [[ -z "$CLI_REPO_TOKEN" ]]; then
-    echo "Missing GitHub credentials for the CLI repository. No deployments will be made."
-    exit 4
-fi
-if [[ -z "HOMEBREW_REPO_TOKEN" ]]; then
+if [[ -z "$HOMEBREW_REPO_TOKEN" ]]; then
     echo "Missing GitHub credentials for the Homebrew repository. No deployments will be made."
     exit 4
 fi
@@ -44,7 +40,6 @@ echo "Starting deployment..."
 config() {
   git config --global user.email "4741599+jblack-vail@users.noreply.github.com"
   git config --global user.name "jblack-vail"
-  git remote add origin-cli https://${CLI_REPO_TOKEN}@github.com/${GITHUB_REPOSITORY_SLUG}.git > /dev/null 2>&1
 }
 config
 

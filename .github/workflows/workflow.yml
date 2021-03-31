@@ -77,6 +77,5 @@ jobs:
         AWS_REGION: us-east-2
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} 
-        CLI_REPO_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         HOMEBREW_REPO_TOKEN: ${{ secrets.HOMEBREW_ACCESS_TOKEN }} # might be the same for CLI and Homebrew, but not necessarily
