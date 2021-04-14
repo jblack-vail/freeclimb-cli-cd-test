@@ -9,6 +9,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 None
 
+<a name="0.1.18"></a>
+
+## [0.1.18] - 2021-04-14
+
+Switch mac platform sed format
+
 <a name="0.1.17"></a>
 
 ## [0.1.17] - 2021-04-14
